@@ -1,14 +1,8 @@
 from django.conf import settings
 from django.db import models
-from django.core.exceptions import ValidationError
+# from django.core.exceptions import ValidationError
 # Create your models here.
-
-
-def validate_content(value):
-    content = value
-    if content == "abc":
-        raise ValidationError("content cannot be abc ")
-    return content
+from .validators import validate_content
 
 
 class Tweet(models.Model):
