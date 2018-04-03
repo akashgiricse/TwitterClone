@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.db import models
-
+from django.core.exceptions import ValidationError
 # Create your models here.
 
 
@@ -12,3 +12,9 @@ class Tweet(models.Model):
 
     def __str__(self):
         return str(self.content)
+
+    def clean(self, *args, **kwargs):
+        content = self.content
+        if content == "abc":
+            raise ValidationError("content cannot be abc ")
+        return super(Tweet, self).clean(*args, **kwargs)

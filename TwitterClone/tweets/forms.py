@@ -10,9 +10,9 @@ class TweetModelForm(forms.ModelForm):
             "content"
         ]
 
-    def clean_content(self, *args, **kwargs):
-        content = self.cleaned_data.get("content")
-        if content == "abc":
-            raise forms.ValidationError("Can not be ABC")
+    # def clean_content(self, *args, **kwargs):
+    #     content = self.cleaned_data.get("content")
+    #     if content == "abc":
+    #         raise forms.ValidationError("Can not be ABC")
 
-            return content
+    #         return content
