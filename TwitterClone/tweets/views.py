@@ -7,10 +7,12 @@ from .models import Tweet
 
 # Create
 class TweetCreateView(CreateView):
-    # queryset = Tweet.objects.all()
     form_class = TweetModelForm
     template_name = "tweets/create_view.html"
-    # fields = ['user', 'content']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(TweetCreateView, self).form_valid(form)
 
 
 class TweetDetailView(DetailView):
