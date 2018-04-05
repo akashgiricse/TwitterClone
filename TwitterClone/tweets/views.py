@@ -1,3 +1,5 @@
+from django import forms
+from django.forms.utils import ErrorList
 from django.views.generic import DetailView, ListView, CreateView
 from django.shortcuts import render, get_object_or_404
 from .forms import TweetModelForm
@@ -12,8 +14,12 @@ class TweetCreateView(CreateView):
     success_url = "/tweet/create"
 
     def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super(TweetCreateView, self).form_valid(form)
+        if self.request.user.is_authenticated():
+            form.instance.user = self.request.user
+            return super(TweetCreateView, self).form_valid(form)
+        else:
+            form._errors[forms.forms.NON_FIELD_ERRORS] = ErrorList(["User must be logged in."])
+            return self.form_invalid(form)
 
 
 # def tweet_create_view(request):
