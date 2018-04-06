@@ -1,4 +1,4 @@
-from django.views.generic import DetailView, ListView, CreateView
+from django.views.generic import DetailView, ListView, CreateView, UpdateView
 from django.shortcuts import render, get_object_or_404
 from .forms import TweetModelForm
 from .models import Tweet
@@ -13,6 +13,14 @@ class TweetCreateView(FormUserNeededMixin, CreateView):
     success_url = "/tweet/create"
 
 
+class TweetUpdateView(UpdateView):
+    queryset = Tweet.objects.all()
+    form_class = TweetModelForm
+    template_name = 'tweets/update_view.html'
+    success_url = "/tweet/"
+
+
+# Retrieve
 class TweetDetailView(DetailView):
     template_name = "tweets/detail_view.html"
     queryset = Tweet.objects.all()
