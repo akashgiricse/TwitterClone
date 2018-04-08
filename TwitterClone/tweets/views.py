@@ -51,7 +51,7 @@ class TweetListView(ListView):
         if query is not None:
             qs = qs.filter(
                 Q(content__icontains=query) |
-                Q(user_username_icontains=query)
+                Q(user__username__icontains=query)
             )
         return qs
 
