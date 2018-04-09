@@ -1,17 +1,22 @@
-{% include "tweets/search_form.html" %}
-<br>
+{% extends "base.html" %}
 
-{% for object in object_list %}
+{% block content%}
+	{% include "tweets/search_form.html" %}
+	<br>
 
-	{{ object.content }}<br/>
-	{{ object.user }}<br/>
-	posted {{ object.timestamp|timesince }} ago<br/>
-	<hr>
+	{% for object in object_list %}
 
-{% empty %}
-	{% if request.GET.q %}
-	<p>No tweets found.</p>
-	{% else%}
-	<p>No tweets yet.</p>
-	{% endif %}
-{% endfor %}
+		{{ object.content }}<br/>
+		{{ object.user }}<br/>
+		posted {{ object.timestamp|timesince }} ago<br/>
+		<hr>
+
+	{% empty %}
+		{% if request.GET.q %}
+		<p>No tweets found.</p>
+		{% else%}
+		<p>No tweets yet.</p>
+		{% endif %}
+	{% endfor %}
+
+{% endblock content %}
