@@ -60,12 +60,12 @@ class TweetListView(ListView):
         return context
 
 
-def tweet_detail_view(request, pk=None):  # pk == id
+# def tweet_detail_view(request, pk=None):  # pk == id
 
-    obj = get_object_or_404(Tweet, pk=pk)
-    print(obj)
-    context = {
-        "object": obj
-    }
+#     obj = get_object_or_404(Tweet, pk=pk)
+#     print(obj)
+#     context = {
+#         "object": obj
+#     }
 
-    return render(request, "tweets/detail_view.html", context)
+#     return render(request, "tweets/detail_view.html", context)
