@@ -1,0 +1,32 @@
+<div class="navbar navbar-expand-md navbar-light bg-light">
+
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarEverything" aria-controls="navbarEverything" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarEverything">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a href="{% url "home" %}" class="nav-link active">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">News</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a href="#" class="nav-link dropdown-toggle" id="navbarEverythingMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          About
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarEverythingMenuLink">
+          <a href="#" class="dropdown-item">History</a>
+          <a href="#" class="dropdown-item">Employees</a>
+          <a href="#" class="dropdown-item">Awards</a>
+        </div>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link disabled">Contact</a>
+        </li>
+      </ul>
+
+      <!-- <span class="navbar-text">Lorem ipsum.</span> -->
+    </div>
+    {% include "tweets/search_form.html" %}
+  </div>
