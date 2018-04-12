@@ -57,15 +57,17 @@ class TweetListView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(TweetListView, self).get_context_data(*args, **kwargs)
+        context['create_form'] = TweetModelForm()
+        context['create_url'] = reverse_lazy("tweet:create")
         return context
 
 
-# def tweet_detail_view(request, pk=None):  # pk == id
+def tweet_detail_view(request, pk=None):  # pk == id
 
-#     obj = get_object_or_404(Tweet, pk=pk)
-#     print(obj)
-#     context = {
-#         "object": obj
-#     }
+    obj = get_object_or_404(Tweet, pk=pk)
+    print(obj)
+    context = {
+        "object": obj
+    }
 
-#     return render(request, "tweets/detail_view.html", context)
+    return render(request, "tweets/detail_view.html", context)
