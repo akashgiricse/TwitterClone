@@ -12,6 +12,7 @@
 				<div class="row">
 					{% include "tweets/form.html" with form=create_form action_url=create_url btn_title='Tweet' %}
 				</div>
+				<hr>
 			{% endif %}
 			{% for object in object_list %}
 				<div class="media">
