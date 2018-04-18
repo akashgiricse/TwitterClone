@@ -9,10 +9,21 @@ $(document).ready(function(){
 
 	$.ajax({
 
-		url:"{% url 'tweet-api:list' %}",
+		url:"/api/tweet/",
 		method: "GET",
 		success: function(data){
-			console.log(data)
+			//console.log(data)
+			$.each(data, function(key,value){
+				// console.log(key)
+				// console.log(value.user)
+				// console.log(value.user)
+				var tweetKey = key
+				var tweetContent = value.content
+				var tweetUser = value.user
+				$("#tweet-container").append(
+					"<div class=\"media\"><div class=\"media-body\">" + tweetContent + "<br> via " + tweetUser.username + " | " + "<a href='#'> View </a>" + "</div></div></br>"
+					)
+			})
 		},
 		error:function(data){
 
@@ -30,6 +41,8 @@ $(document).ready(function(){
 
 {% block content%}
 
+
+
 	
 	<div class="row">
 		<div class="col-sm-3 col-xs-12" style="background-color: yellow">
@@ -42,6 +55,11 @@ $(document).ready(function(){
 				</div>
 				<hr>
 			{% endif %}
+
+			<div id="tweet-container">
+	
+			</div>
+
 			{% for object in object_list %}
 				<div class="media">
 					<div class="media-left">
