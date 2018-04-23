@@ -20,6 +20,27 @@ $(document).ready(function(){
 	console.log("working");
 
 	var query = getParameterByName('q')
+	var tweetList = [];
+
+	function parseTweets(){
+		if (tweetList == 0){
+			$("#tweet-container").text("No tweets found")
+		}
+		else {
+			// if tweets exist, parse  and display them
+		$.each(tweetList, function(key,value){
+			// console.log(key)
+			// console.log(value.user)
+			// console.log(value.user)
+			var tweetKey = key
+			var tweetContent = value.content
+			var tweetUser = value.user
+			$("#tweet-container").append(
+				"<div class=\"media\"><div class=\"media-body\">" + tweetContent + "<br> via " + tweetUser.username + " | " + "<a href='#'> View </a>" + "</div></div></br>"
+				)
+			})
+		}
+	}
 	console.log(query)
 
 	$.ajax({
@@ -31,17 +52,10 @@ $(document).ready(function(){
 		method: "GET",
 		success: function(data){
 			//console.log(data)
-			$.each(data, function(key,value){
-				// console.log(key)
-				// console.log(value.user)
-				// console.log(value.user)
-				var tweetKey = key
-				var tweetContent = value.content
-				var tweetUser = value.user
-				$("#tweet-container").append(
-					"<div class=\"media\"><div class=\"media-body\">" + tweetContent + "<br> via " + tweetUser.username + " | " + "<a href='#'> View </a>" + "</div></div></br>"
-					)
-			})
+
+			tweetList = data
+			parseTweets()
+	
 		},
 		error:function(data){
 
