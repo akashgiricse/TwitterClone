@@ -21,7 +21,7 @@ class TweetModelSerializer(serializers.ModelSerializer):
         ]
 
     def get_date_display(self, obj):
-        return obj.timestamp.strftime("%b %d %I:%M %p")
+        return obj.timestamp.strftime("%b %d, %Y | at  %I:%M %p")
 
     def get_timesince(self, obj):
         return timesince(obj.timestamp) + " ago"
