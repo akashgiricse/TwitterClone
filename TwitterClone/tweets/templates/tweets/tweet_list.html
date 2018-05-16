@@ -21,6 +21,23 @@ $(document).ready(function(){
 	var query = getParameterByName('q')
 	var tweetList = [];
 
+	function attachTweet(tweetValue, prepend){
+
+		var dateDisplay = tweetValue.date_display
+		var tweetContent = tweetValue.content
+		var tweetUser = tweetValue.user
+
+		var tweetFormattedHtml = "<div class=\"media\"><div class=\"media-body\">" + tweetContent + "<br> via " + tweetUser.username + " | " + dateDisplay + " | " + "<a href='#'> View </a>" + "</div></div></hr>"
+
+		if(prepend==true){
+			$("#tweet-container").prepend(tweetFormattedHtml)
+
+		} else{
+			$("#tweet-container").append(tweetFormattedHtml)
+		}
+		
+	}
+
 	function parseTweets(){
 		if (tweetList == 0){
 			$("#tweet-container").text("No tweets found")
@@ -31,14 +48,10 @@ $(document).ready(function(){
 			// console.log(key)
 			// console.log(value.user)
 			// console.log(value.user)
-			var tweetKey = key
+			var tweetKey = key;
 
-			var dateDisplay = value.date_display
-			var tweetContent = value.content
-			var tweetUser = value.user
-			$("#tweet-container").append(
-				"<div class=\"media\"><div class=\"media-body\">" + tweetContent + "<br> via " + tweetUser.username + " | " + dateDisplay + " | " + "<a href='#'> View </a>" + "</div></div></br>"
-				)
+			attachTweet(value)
+			
 			})
 		}
 	}
@@ -86,8 +99,12 @@ fetchTweets()
 			data: formData,
 			method: "POST",
 			success: function(data){
-				console.log(data)
-				fetchTweets()
+
+				attachTweet(data, true)
+
+				this_.find("input[type=text], textarea").val("")
+				// console.log(data)
+				// fetchTweets()
 		
 			},
 			error:function(data){
